@@ -1,7 +1,7 @@
 import os
 
-from ..utils.constants import Constants
-from ..utils import paths
+from .constants import Constants
+from . import paths
 
 
 class NewPreset:
@@ -25,14 +25,26 @@ class NewPreset:
             os.makedirs(new_preset_path, exist_ok=True)
 
             # get pahts to new txt files
+            new_self_kill_txt = os.path.join(
+                new_preset_path, f"{Constants.SELF_KILL}.txt"
+            )
+            new_self_death_txt = os.path.join(
+                new_preset_path, f"{Constants.SELF_DEATH}.txt"
+            )
             new_ally_kill_txt = os.path.join(
                 new_preset_path, f"{Constants.ALLY_KILL}.txt"
             )
             new_ally_death_txt = os.path.join(
-                new_preset_path, f"{Constants.ALL_DEATH}.txt"
+                new_preset_path, f"{Constants.ALLY_DEATH}.txt"
             )
 
             # create new txt files
+            with open(new_self_kill_txt, "w", encoding="utf-8") as file:
+                file.write("")
+
+            with open(new_self_death_txt, "w", encoding="utf-8") as file:
+                file.write("")
+
             with open(new_ally_kill_txt, "w", encoding="utf-8") as file:
                 file.write("")
 

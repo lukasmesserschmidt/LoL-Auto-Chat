@@ -23,8 +23,10 @@ class Constants:
     SHOW_HELP = "showHelp"
 
     # events
+    SELF_KILL = "self_kill"
+    SELF_DEATH = "self_death"
     ALLY_KILL = "ally_kill"
-    ALL_DEATH = "ally_death"
+    ALLY_DEATH = "ally_death"
 
     # thread variables
     INTERVAL = 4

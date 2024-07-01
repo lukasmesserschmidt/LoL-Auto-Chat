@@ -49,7 +49,10 @@ class AllPlayerData:
             return None
 
         for player_data in all_players_data:
-            if player_data.get("riotIdGameName") == player_name:
+            if (
+                player_data.get("riotIdGameName") == player_name
+                or player_data.get("summonerName") == player_name
+            ):
                 return player_data.get("championName")
 
         return None

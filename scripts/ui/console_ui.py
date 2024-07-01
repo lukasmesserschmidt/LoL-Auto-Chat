@@ -2,12 +2,13 @@ import os
 import subprocess
 import time
 import msvcrt
+import webbrowser
 
 from ..lol_data.lol_live_client_data import LolLiveClientData
 from ..managers.lol_manager import LolManager
 from ..managers.chat_manager import ChatManager
 from ..managers.config_manager import ConfigManager
-from ..managers.new_preset import NewPreset
+from ..utils.new_preset import NewPreset
 from ..utils.constants import Constants
 from ..utils import paths
 
@@ -100,6 +101,7 @@ class ConsoleUi:
                 cls.current_menu = Constants.MAIN_MENU
             elif input_value == "new":
                 new_preset_path = NewPreset.create()
+                webbrowser.open("https://github.com/xJolux/Lol-Auto-Chat")
                 subprocess.Popen(["explorer", new_preset_path])
                 cls.current_menu = Constants.PRESET_MENU
             elif input_value == "presets":
@@ -168,7 +170,7 @@ class ConsoleUi:
         print(
             f"(2) Temporarily remove used messages: {ConfigManager.remove_used_messages}\n"
         )
-        print(f"(3) Write messages in all chat: {ConfigManager.use_all_chat}\n")
+        print(f"(3) Write all messages in all chat: {ConfigManager.use_all_chat}\n")
         print(f"(4) Change message preset: {current_preset_name}\n\n")
 
         # write help

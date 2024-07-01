@@ -21,8 +21,10 @@ class ChatManager(ThreadBase):
 
     # contains the current preset message lists for the events
     current_preset = {
+        Constants.SELF_KILL: [],
+        Constants.SELF_DEATH: [],
         Constants.ALLY_KILL: [],
-        Constants.ALL_DEATH: [],
+        Constants.ALLY_DEATH: [],
     }
 
     # thread control
@@ -58,10 +60,17 @@ class ChatManager(ThreadBase):
             if all_events is not None and current_event_count > last_event_count:
                 for current_event in all_events[last_event_count:]:
                     current_event_name = current_event.get("EventName")
+                    message = None
 
-                    # check if the event is a champion kill
+                    # gets a message for the champion kill event
                     if current_event_name == "ChampionKill":
-                        cls._champion_kill_event(current_event)
+                        message = cls._get_champion_kill_event_message(current_event)
+
+                    # write the message to the chat
+                    if message is not None:
+                        cls._write_to_chat(message)
+
+                    cls.wait(Constants.INTERVAL)
 
                 last_event_count = current_event_count
 
@@ -69,7 +78,7 @@ class ChatManager(ThreadBase):
 
     # event handlers
     @classmethod
-    def _champion_kill_event(cls, current_event: dict):
+    def _get_champion_kill_event_message(cls, current_event: dict):
         """
         Handles the champion kill events.
         """
@@ -80,8 +89,26 @@ class ChatManager(ThreadBase):
         if killer_name is None or victim_name is None:
             return
 
-        # get the ally team
+        # get ally team
         ally_team = ActivePlayerData.get_team_player_names(True)
+
+        # get active player name
+        active_player_name = ActivePlayerData.get_active_player_name()
+
+        if active_player_name is not None:
+            # send self kill message
+            if killer_name == active_player_name:
+                message = cls._get_messages_from_preset(
+                    Constants.SELF_KILL, victim_name
+                )
+                return message
+
+            # send self death message
+            elif victim_name == active_player_name:
+                message = cls._get_messages_from_preset(
+                    Constants.SELF_DEATH, killer_name
+                )
+                return message
 
         if ally_team is not None:
             # send ally kill message
@@ -89,18 +116,14 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_KILL, killer_name
                 )
-
-                if message is not None:
-                    cls._write_to_chat(message)
+                return message
 
             # send ally death message
             elif victim_name in ally_team:
                 message = cls._get_messages_from_preset(
-                    Constants.ALL_DEATH, victim_name
+                    Constants.ALLY_DEATH, victim_name
                 )
-
-                if message is not None:
-                    cls._write_to_chat(message)
+                return message
 
     # message managers
     @classmethod
@@ -145,7 +168,7 @@ class ChatManager(ThreadBase):
                 return None
 
             # replace the placeholders with the champion name
-            message = message.replace("|CN?|", champion_name)
+            message = message.replace("|CN|", champion_name)
 
             return message
 
@@ -159,11 +182,11 @@ class ChatManager(ThreadBase):
         # write the message if League of Legends is in the foreground
         if LolManager.is_lol_foreground():
             # use all chat if it is enabled
-            if ConfigManager.use_all_chat:
-                keyboard.press_and_release("shift+enter")
-            else:
-                keyboard.press_and_release("enter")
-            time.sleep(0.05)
+            if ConfigManager.use_all_chat and message[0:4] != "/all":
+                message = "/all " + message
+
+            keyboard.press_and_release("enter")
+            time.sleep(0.03)
             keyboard.write(message)
             time.sleep(0.02)
             pyautogui.press("enter")
