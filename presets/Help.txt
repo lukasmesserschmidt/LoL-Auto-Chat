@@ -1,0 +1,74 @@
+---- Help ----
+
+
+-- .txt Files --
+
+.txt file Contents:
+
+- contains the Messages that are used for the coresponding in-game Event.
+
+Name of a .txt file:
+
+- indicates on which in-game Event, a message from this .txt files is used.
+
+
+-- Create Chat Messages Prompt --
+
+Use this prompt to generate a list of chat messages for League of Legends tailored to specific emotions, styles, and game contexts.
+
+Prompt:
+
+Create chat messages for League of Legends. The messages should be based on a given emotion/tone, style, and game context/what happened. Each message should be on a separate line, making it easy to copy them into a .txt file. The messages should always refer directly to a player. The percentage indicates how often the player should be referred to by the champion name using the placeholder "|CN?|". The remaining percentage should refer to the player using pronouns like "you" or "your". Respond only with the messages. The messages should be in English, and ensure that there is only one message per line, without any numbering or additional characters.
+
+Number of messages: 
+
+Message Length: 
+
+Percentage of messages using the champion name: 
+
+Emotion/Tone: 
+
+Style: 
+
+Game context/What happened: 
+
+
+-- Prompt Explanation --
+
+Number of messages:
+
+- Explanation: Specify how many messages you want to create.
+
+- Example: 50 Messages
+
+Message Length:
+
+- Explanation: Indicates the desired length of each message.
+
+- Example: short, medium, Long
+
+Percentage of messages using the champion name:
+
+- Explanation: Determine the percentage (%) of messages that should refer to the player using the champion name. The remaining percentage will refer to the player using pronouns like "you" or "your".
+
+- Example: 50% (This means half of the messages will use the champion name and the other half will use pronouns.)
+
+Emotion/Tone:
+
+- Explanation: Describe the emotional mood or tone for the messages.
+
+- Example: humorous, serious, encouraging
+
+Style:
+
+- Explanation: Specify any particular style for the messages.
+
+- Example: formal, casual, tactical
+
+Game context/What happened:
+
+- Explanation: Provide details about the game context or specific events that should influence the content of the messages.
+
+- Example: ally got a kill, ally died
+
+
