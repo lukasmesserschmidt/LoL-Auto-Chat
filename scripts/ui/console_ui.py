@@ -25,6 +25,9 @@ class ConsoleUi:
         """
         Gets the input from the user.
         """
+        # init input value default
+        input_value = ""
+
         # gets the input for the main menu
         if cls.current_menu == Constants.MAIN_MENU:
             cls._write_default_input_section()
@@ -41,9 +44,10 @@ class ConsoleUi:
             while not LolManager.is_lol_running():
                 if msvcrt.kbhit():
                     if msvcrt.getch() == b"\r":
-                        return False
+                        input_value = "b"
+                        break
                 time.sleep(0.1)
-            return True
+            input_value = "s"
 
         # gets the input for the in game menu
         elif cls.current_menu == Constants.IN_GAME_MENU:
@@ -51,10 +55,10 @@ class ConsoleUi:
             while LolManager.is_lol_running():
                 if msvcrt.kbhit():
                     if msvcrt.getch() == b"\r":
-                        return None
+                        break
                 time.sleep(0.1)
 
-        return input_value
+        return input_value.lower()
 
     @classmethod
     def handle_input(cls, input_value):
@@ -65,29 +69,29 @@ class ConsoleUi:
         config = ConfigManager.load()
 
         # handle general input
-        if input_value == "help":
+        if input_value == "h":
             config[Constants.SHOW_HELP] = not ConfigManager.show_help
             ConfigManager.save(config)
             cls.load_current_menu()
 
         # handle main menu input
         elif cls.current_menu == Constants.MAIN_MENU:
-            if input_value == "1" and cls._preset_exists(
+            if input_value == "s" and cls._preset_exists(
                 ConfigManager.current_preset_name
             ):
                 LolLiveClientData.start()
                 cls.current_menu = Constants.WAITING_MENU
-            elif input_value == "2":
+            elif input_value == "1":
                 config[Constants.REMOVE_USED_MESSAGES] = (
                     not ConfigManager.remove_used_messages
                 )
                 ConfigManager.save(config)
                 cls.current_menu = Constants.MAIN_MENU
-            elif input_value == "3":
+            elif input_value == "2":
                 config[Constants.USE_ALL_CHAT] = not ConfigManager.use_all_chat
                 ConfigManager.save(config)
                 cls.current_menu = Constants.MAIN_MENU
-            elif input_value == "4":
+            elif input_value == "3":
                 cls.current_menu = Constants.PRESET_MENU
             else:
                 cls.current_menu = Constants.MAIN_MENU
@@ -99,12 +103,15 @@ class ConsoleUi:
 
             if input_value == "b":
                 cls.current_menu = Constants.MAIN_MENU
-            elif input_value == "new":
+            elif input_value == "n":
                 new_preset_path = NewPreset.create()
-                webbrowser.open("https://github.com/xJolux/Lol-Auto-Chat")
                 subprocess.Popen(["explorer", new_preset_path])
                 cls.current_menu = Constants.PRESET_MENU
-            elif input_value == "presets":
+            elif input_value == "g":
+                webbrowser.open(
+                    "https://github.com/xJolux/LoL-Auto-Chat/blob/main/CreatingPresetsGuide.md"
+                )
+            elif input_value == "p":
                 subprocess.Popen(["explorer", paths.get_presets_dir_path()])
                 cls.current_menu = Constants.PRESET_MENU
             elif input_value.isdigit() and 0 < int(input_value) <= len(
@@ -120,10 +127,10 @@ class ConsoleUi:
 
         # handle waiting menu input
         elif cls.current_menu == Constants.WAITING_MENU:
-            if input_value:
+            if input_value == "s":
                 ChatManager.start()
                 cls.current_menu = Constants.IN_GAME_MENU
-            else:
+            elif input_value == "b":
                 LolLiveClientData.stop()
                 cls.current_menu = Constants.MAIN_MENU
 
@@ -155,7 +162,7 @@ class ConsoleUi:
         # clear and write header
         os.system("cls" if os.name == "nt" else "clear")
         cls._write_header("Main Menu")
-        print("(1) Start\n\n")
+        print("(s) Start\n\n")
 
         # check if current preset exists and set current preset name
         current_preset_name = ConfigManager.current_preset_name
@@ -168,10 +175,10 @@ class ConsoleUi:
         # write settings
         cls._write_header("Settings")
         print(
-            f"(2) Temporarily remove used messages: {ConfigManager.remove_used_messages}\n"
+            f"(1) Temporarily remove used messages: {ConfigManager.remove_used_messages}\n"
         )
-        print(f"(3) Write all messages in all chat: {ConfigManager.use_all_chat}\n")
-        print(f"(4) Change message preset: {current_preset_name}\n\n")
+        print(f"(2) Write all messages in all chat: {ConfigManager.use_all_chat}\n")
+        print(f"(3) Change message preset: {current_preset_name}\n\n")
 
         # write help
         if ConfigManager.show_help:
@@ -179,7 +186,7 @@ class ConsoleUi:
             print(
                 'To change/select an option, type the number in "()" and press Enter.\n'
             )
-            print('Type "quit" and press Enter to exit the program.\n\n')
+            print('Type "q" and press Enter to exit the program.\n\n')
 
     @classmethod
     def _preset_menu(cls):
@@ -207,16 +214,19 @@ class ConsoleUi:
         # write presets and option to create new preset
         for i, directory in enumerate(preset_directories):
             print(f"({i + 1}) {directory}\n")
-        print("(new) Create new preset\n\n")
+        print("(n) Create new preset\n\n")
 
         # write help
         if ConfigManager.show_help:
             cls._write_header("Help")
             print('To select a preset, type the number in "()" and press Enter.\n')
-            print('Type "new" and press Enter to create a new preset.\n')
-            print('Type "presets" and press Enter to open the presets folder.\n')
+            print('Type "n" and press Enter to create a new preset.\n')
+            print(
+                'Type "g" and press Enter to open a guide on how to create presets.\n'
+            )
+            print('Type "p" and press Enter to open the presets folder.\n')
             print('Type "b" and press Enter to return to the main menu.\n')
-            print('Type "quit" and press Enter to exit the program.\n\n')
+            print('Type "q" and press Enter to exit the program.\n\n')
 
     @classmethod
     def _waiting_menu(cls):
@@ -251,7 +261,7 @@ class ConsoleUi:
         Writes the Input header and the Help command to the console.
         """
         cls._write_header("Input")
-        print('To show/hide "-- Help --", type "help" and press Enter.\n')
+        print('To show/hide "-- Help --", type "h" and press Enter.\n')
 
     @classmethod
     def _get_presets_names(cls):

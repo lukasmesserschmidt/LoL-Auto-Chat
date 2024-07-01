@@ -19,11 +19,9 @@ def main():
         # get user input
         input_value = ConsoleUi.get_input()
 
-        # if input is quit, stop the program
-        if input_value == "quit":
-            break
-
         # handle user input
+        if input_value == "q":
+            break
         ConsoleUi.handle_input(input_value)
 
         # load/update current menu

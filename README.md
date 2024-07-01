@@ -22,7 +22,7 @@ This Python console program sends chat messages in League of Legends based on in
 
 ### Creating Custom Presets
 
-[Go to Creating Prests.]() 
+[Creating Prests Guide.](https://github.com/xJolux/LoL-Auto-Chat/blob/main/CreatingPresetsGuide.md)
 
 ## License
 This project is licensed under the GNU General Public License Version 3 - see the LICENSE file for details.
