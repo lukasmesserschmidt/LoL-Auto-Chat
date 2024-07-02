@@ -10,15 +10,15 @@ This Python console program sends chat messages in League of Legends based on in
 - **Automated Chat Messages**: Sends predefined messages during specific in-game events such as kills or deaths.
 - **Message Presets**: Includes a selection of predefined messages for common scenarios.
 - **Customizable Presets**: Users can create and customize their own message presets according to their preferences.
-- **Console Interface**: Simple and easy-to-use console interface for managing presets and settings.
+- **Console Interface**: Simple console interface for managing presets and settings.
 
 ## Presets
 
 ### Default Presets
 - Default Positve
-- Default Pirat
-- Default Storyteller
 - Default Toxic
+- Default Pirat
+- Default Poet
 
 ### Creating Custom Presets
 

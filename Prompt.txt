@@ -1,0 +1,92 @@
+Generate unique chat messages for League of Legends using the following criteria:
+
+- Number of messages per event:
+- Message Length:
+- Percentage of messages using the champion name:
+- Emotion/Tone:
+- Style:
+
+Guidelines:
+
+1. Use the specified Emotion/Tone and Style consistently across all messages.
+2. Each message should refer directly to a player.
+3. Use the placeholder "|CN|" for the champion name in the specified percentage of messages.
+4. Use pronouns like "you" or "your" in the remaining messages.
+5. If the message is directed at an enemy player, start the message with “/all”.
+6. Ensure there is only one message per line for easy copying into a .txt file.
+7. The messages should be in English.
+8. There should be only one message per line, without any numbering or additional characters.
+9. Clearly separate messages for different in-game events.
+
+In-game Events and Message Requirements:
+
+1. ally death:
+    - Write the given number of messages referring to the ally who died.
+2. ally kill:
+    - Write the given number of messages referring to the ally who made the kill.
+3. self death:
+    - Write the given number of messages referring to the enemy who killed you.
+4. self kill:
+    - Write the given number of messages referring to the enemy that you killed.
+
+Example Input:
+
+- Number of messages per event: 10
+- Message Length: Short
+- Percentage of messages using the champion name: 40
+- Emotion/Tone: Encouraging
+- Style: Casual
+
+Example Output:
+
+ally death:
+
+You'll get them next time, |CN|!
+Stay strong, we need you!
+Don't worry, we've got your back!
+Keep your head up, |CN|!
+Shake it off, you'll bounce back!
+We'll avenge you, hang tight!
+Keep fighting, don't give up!
+We'll come back stronger, |CN|!
+Stay focused, we've got this!
+Keep your spirits high, |CN|!
+
+ally kill:
+
+Great job, |CN|! That was amazing!
+You really showed them how it's done!
+Nice kill, |CN|! Keep it up!
+You nailed that kill! Keep carrying us!
+You’ve got the skills, keep pushing forward!
+Awesome work, keep it up!
+That was clutch, |CN|!
+You're on fire, don't stop now!
+Way to go, you're unstoppable!
+Keep dominating, we're behind you!
+
+self death:
+
+/all Well played! That was a clean kill.
+/all Nice one! You caught me off guard.
+/all Impressive kill, |CN|! Well done.
+/all That was a solid play! Good job.
+/all You really got me there, |CN|! Nicely done.
+/all Good fight, you were tough.
+/all You put up a good fight!
+/all Respect, that was a good kill.
+/all GG, that was fun!
+/all Well played, |CN|!
+
+self kill:
+
+/all Better luck next time, |CN|!
+/all Got you! Nice try though.
+/all Outplayed! Better luck next time.
+/all That's how it's done!
+/all You weren't ready for that, |CN|!
+/all Too easy!
+/all Dominated!
+/all Better step up your game, |CN|!
+/all Nice try, but not good enough.
+/all Guess who’s in charge now, |CN|?

@@ -41,7 +41,8 @@ class ChatManager(ThreadBase):
     @classmethod
     def _loop(cls):
         # init event count variables
-        current_event_count = len(EventData.get_all_events())
+        all_events = EventData.get_all_events()
+        current_event_count = len(all_events) if all_events is not None else 0
         last_event_count = current_event_count
 
         # fill current preset dict with the current preset messages
@@ -66,15 +67,18 @@ class ChatManager(ThreadBase):
                     if current_event_name == "ChampionKill":
                         message = cls._get_champion_kill_event_message(current_event)
 
-                    # write the message to the chat
                     if message is not None:
+                        # write the message to the chat and wait
                         cls._write_to_chat(message)
 
-                    cls.wait(Constants.INTERVAL)
+                        cls.wait(Constants.INTERVAL)
 
+                # update last event count
                 last_event_count = current_event_count
 
-            cls.wait(Constants.INTERVAL)
+            # wait if there are no new events
+            else:
+                cls.wait(Constants.INTERVAL)
 
     # event handlers
     @classmethod
@@ -101,6 +105,7 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.SELF_KILL, victim_name
                 )
+                print(1, message)
                 return message
 
             # send self death message
@@ -108,6 +113,7 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.SELF_DEATH, killer_name
                 )
+                print(2, message)
                 return message
 
         if ally_team is not None:
@@ -116,6 +122,7 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_KILL, killer_name
                 )
+                print(3, message)
                 return message
 
             # send ally death message
@@ -123,6 +130,7 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_DEATH, victim_name
                 )
+                print(4, message)
                 return message
 
     # message managers
@@ -169,6 +177,8 @@ class ChatManager(ThreadBase):
 
             # replace the placeholders with the champion name
             message = message.replace("|CN|", champion_name)
+            # remove the quotes if they exist
+            message = message.strip('"')
 
             return message
 
