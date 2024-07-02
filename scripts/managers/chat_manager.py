@@ -105,7 +105,6 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.SELF_KILL, victim_name
                 )
-                print(1, message)
                 return message
 
             # send self death message
@@ -113,7 +112,6 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.SELF_DEATH, killer_name
                 )
-                print(2, message)
                 return message
 
         if ally_team is not None:
@@ -122,7 +120,6 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_KILL, killer_name
                 )
-                print(3, message)
                 return message
 
             # send ally death message
@@ -130,7 +127,6 @@ class ChatManager(ThreadBase):
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_DEATH, victim_name
                 )
-                print(4, message)
                 return message
 
     # message managers
