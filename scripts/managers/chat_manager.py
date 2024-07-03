@@ -102,13 +102,19 @@ class ChatManager(ThreadBase):
         if active_player_name is not None:
             # send self kill message
             if killer_name == active_player_name:
+                if not ConfigManager.enable_self_kill:
+                    return None
+
                 message = cls._get_messages_from_preset(
                     Constants.SELF_KILL, victim_name
                 )
                 return message
 
             # send self death message
-            elif victim_name == active_player_name:
+            if victim_name == active_player_name:
+                if not ConfigManager.enable_self_death:
+                    return None
+
                 message = cls._get_messages_from_preset(
                     Constants.SELF_DEATH, killer_name
                 )
@@ -117,17 +123,25 @@ class ChatManager(ThreadBase):
         if ally_team is not None:
             # send ally kill message
             if killer_name in ally_team:
+                if not ConfigManager.enable_ally_kill:
+                    return None
+
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_KILL, killer_name
                 )
                 return message
 
             # send ally death message
-            elif victim_name in ally_team:
+            if victim_name in ally_team:
+                if not ConfigManager.enable_ally_death:
+                    return None
+
                 message = cls._get_messages_from_preset(
                     Constants.ALLY_DEATH, victim_name
                 )
                 return message
+
+        return None
 
     # message managers
     @classmethod

@@ -17,6 +17,7 @@ You can rename the preset folder as you like.
 
 ### .txt Files
 
+**Files**
 - ally_death.txt
 - ally_kill.txt
 - self_death.txt
@@ -26,17 +27,17 @@ Do not change the names of these .txt files!
 
  **Contents of .txt Files**
 
-These files contain messages used for specific in-game events.
+- These files contain messages used for specific in-game events.
 
  **Names of .txt Files**
 
-Each file's name indicates the in-game event its messages are used for.
+- Each file's name indicates the in-game event its messages are used for.
 
 ### Messages
 
  **Placeholders**
 
-To dynamically include a player's champion name in a message, use the "|CN|" placeholder.
+- To dynamically include a player's champion name in a message, use the "|CN|" placeholder.
 
  **Usage of Champion Names in Events**
 
@@ -45,7 +46,7 @@ To dynamically include a player's champion name in a message, use the "|CN|" pla
 - "self_death": Uses the champion name of the enemy that killed you.
 - "self_kill": Uses the champion name of the enemy that you killed.
 
-## Generate Chat Messages
+## Generate Messages
 
 1. Copy this [Prompt](https://github.com/xJolux/LoL-Auto-Chat/blob/main/Prompt.txt) and paste it into ChatGPT.
 2. Customize the criteria in the prompt to your preferences, then submit it.
@@ -77,7 +78,6 @@ To dynamically include a player's champion name in a message, use the "|CN|" pla
 ### Copying and Pasting Messages
 
 If you find the generated messages satisfactory, please copy and paste them into the respective .txt file. If you choose not to use messages for a specific event, leave that .txt file empty.
-
 Ensure the correct usage of "/all" for messages to enemy players and the placeholder "|CN|" for champion names. Each message should be placed on a new line within the file for functionality.
 
 ### Disclaimer

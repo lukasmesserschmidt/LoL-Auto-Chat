@@ -1,0 +1,53 @@
+/all Arrr, ye fought like a landlubber, |CN|!
+/all Aye, ye weren’t ready for me!
+/all Blimey, ye went down quick!
+/all Arrr, better luck next time, |CN|!
+/all Aye, ye got bested, matey!
+/all Blimey, that was too easy!
+/all Arrr, ye should stick to fishing, |CN|!
+/all Ye fought like a cabin boy!
+/all Aye, that was a fine kill!
+/all Blimey, ye didn’t stand a chance, |CN|!
+/all Arrr, ye went down like a sinking ship!
+/all Aye, ye got outplayed, matey!
+/all Blimey, better luck next time!
+/all Arrr, ye should practice more, |CN|!
+/all Ye fought like a true landlubber!
+/all Aye, that was too easy!
+/all Blimey, ye weren’t ready for me!
+/all Arrr, better luck next time, |CN|!
+/all Aye, ye got bested, matey!
+/all Blimey, that was too easy!
+/all Arrr, ye should stick to fishing, |CN|!
+/all Ye fought like a cabin boy!
+/all Aye, that was a fine kill!
+/all Blimey, ye didn’t stand a chance, |CN|!
+/all Arrr, ye went down like a sinking ship!
+/all Aye, ye got outplayed, matey!
+/all Blimey, better luck next time!
+/all Arrr, ye should practice more, |CN|!
+/all Ye fought like a true scallywag, |CN|!
+/all Aye, ye didn't see that coming!
+/all Blimey, ye were no match for me!
+/all Arrr, ye should walk the plank next time, |CN|!
+/all Aye, that was a battle for the ages!
+/all Blimey, ye didn't stand a chance!
+/all Arrr, ye should stick to swabbing decks, |CN|!
+/all Aye, that was a fine cutlass swing!
+/all Blimey, ye were outmaneuvered, |CN|!
+/all Arrr, ye went down faster than a dropped anchor!
+/all Aye, ye were outfoxed, matey!
+/all Blimey, that was easier than finding buried treasure!
+/all Arrr, ye should learn the ropes, |CN|!
+/all Aye, ye fought like a barnacle-covered scallywag!
+/all Blimey, that was a pirate's delight!
+/all Arrr, ye were caught napping, |CN|!
+/all Aye, ye need more grog in ye to fight like a pirate!
+/all Blimey, ye were as fierce as a three-legged kitten!
+/all Arrr, ye should sail back to port, |CN|!
+/all Aye, ye were outwitted, me hearty!
+/all Blimey, that was as easy as plundering gold!
+/all Arrr, ye should wear an eyepatch, |CN|!
+/all Aye, ye fought like a bilge rat!
+/all Blimey, ye were as slow as a drunken sailor!
+/all Arrr, ye should hoist the Jolly Roger, |CN|!

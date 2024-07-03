@@ -1,6 +1,10 @@
 {
     "removeUsedMessages": true,
     "useAllChat": false,
+    "enable_ally_death": true,
+    "enable_ally_kill": true,
+    "enable_self_death": true,
+    "enable_self_kill": true,
     "currentPresetName": "Default Positive",
     "showHelp": false
 }

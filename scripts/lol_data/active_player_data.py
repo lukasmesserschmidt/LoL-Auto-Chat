@@ -43,6 +43,9 @@ class ActivePlayerData:
             if (is_ally and active_player_name in team) or (
                 not is_ally and active_player_name not in team
             ):
+                if is_ally:
+                    team.remove(active_player_name)
+
                 return team
 
         return None

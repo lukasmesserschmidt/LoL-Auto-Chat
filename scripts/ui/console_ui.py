@@ -33,6 +33,11 @@ class ConsoleUi:
             cls._write_default_input_section()
             input_value = input("Change/select option: ").strip()
 
+        # gets the input for the toggle events settings
+        elif cls.current_menu == Constants.TOGGLE_EVENTS_MENU:
+            cls._write_default_input_section()
+            input_value = input("Change option: ").strip()
+
         # gets the input for the preset menu
         elif cls.current_menu == Constants.PRESET_MENU:
             cls._write_default_input_section()
@@ -92,9 +97,38 @@ class ConsoleUi:
                 ConfigManager.save(config)
                 cls.current_menu = Constants.MAIN_MENU
             elif input_value == "3":
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
+            elif input_value == "4":
                 cls.current_menu = Constants.PRESET_MENU
             else:
                 cls.current_menu = Constants.MAIN_MENU
+
+        # handle toggle events settings input
+        elif cls.current_menu == Constants.TOGGLE_EVENTS_MENU:
+            if input_value == "b":
+                cls.current_menu = Constants.MAIN_MENU
+            elif input_value == "1":
+                config[Constants.ENABLE_ALLY_DEATH] = (
+                    not ConfigManager.enable_ally_death
+                )
+                ConfigManager.save(config)
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
+            elif input_value == "2":
+                config[Constants.ENABLE_ALLY_KILL] = not ConfigManager.enable_ally_kill
+                ConfigManager.save(config)
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
+            elif input_value == "3":
+                config[Constants.ENABLE_SELF_DEATH] = (
+                    not ConfigManager.enable_self_death
+                )
+                ConfigManager.save(config)
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
+            elif input_value == "4":
+                config[Constants.ENABLE_SELF_KILL] = not ConfigManager.enable_self_kill
+                ConfigManager.save(config)
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
+            else:
+                cls.current_menu = Constants.TOGGLE_EVENTS_MENU
 
         # handle preset menu input
         elif cls.current_menu == Constants.PRESET_MENU:
@@ -147,6 +181,8 @@ class ConsoleUi:
         """
         if cls.current_menu == Constants.MAIN_MENU:
             cls._main_menu()
+        elif cls.current_menu == Constants.TOGGLE_EVENTS_MENU:
+            cls._toggle_events_menu()
         elif cls.current_menu == Constants.PRESET_MENU:
             cls._preset_menu()
         elif cls.current_menu == Constants.WAITING_MENU:
@@ -172,21 +208,49 @@ class ConsoleUi:
             else "!!! No preset selected, cant start without preset !!!"
         )
 
-        # write settings
-        cls._write_header("Settings")
+        # write general settings
+        cls._write_header("General Settings")
         print(
             f"(1) Temporarily remove used messages: {ConfigManager.remove_used_messages}\n"
         )
-        print(f"(2) Write all messages in all chat: {ConfigManager.use_all_chat}\n")
-        print(f"(3) Change message preset: {current_preset_name}\n\n")
+        print(
+            f'(2) Write all messages in "/all" chat: {ConfigManager.use_all_chat}\n\n'
+        )
+
+        # write other settings
+        cls._write_header("Other Settings")
+        print("(3) Toggle Events Settings\n")
+        print(f"(4) Message Presets Settings ({current_preset_name})\n\n")
 
         # write help
         if ConfigManager.show_help:
             cls._write_header("Help")
             print(
-                'To change/select an option, type the number in "()" and press Enter.\n'
+                'To change/select an option, type the symbol shown in the "()" and press Enter.\n'
             )
             print('Type "q" and press Enter to exit the program.\n\n')
+
+    @classmethod
+    def _toggle_events_menu(cls):
+        """
+        Loads the toggle events settings.
+        """
+        # clear and write header
+        os.system("cls" if os.name == "nt" else "clear")
+        cls._write_header("Toggle Events Settings")
+
+        print(f'(1) Enable "ally death" event: {ConfigManager.enable_ally_death}\n')
+        print(f'(2) Enable "ally kill" event: {ConfigManager.enable_ally_kill}\n')
+        print(f'(3) Enable "self death" event: {ConfigManager.enable_self_death}\n')
+        print(f'(4) Enable "self kill" event: {ConfigManager.enable_self_kill}\n\n')
+
+        # write help
+        if ConfigManager.show_help:
+            cls._write_header("Help")
+            print(
+                'To change an option, type the number shown in the "()" and press Enter.\n'
+            )
+            print('Type "b" and press Enter to go back to the main menu.\n\n')
 
     @classmethod
     def _preset_menu(cls):
@@ -198,7 +262,7 @@ class ConsoleUi:
 
         # clear and write header
         os.system("cls" if os.name == "nt" else "clear")
-        cls._write_header("Preset Menu")
+        cls._write_header("Message Preset Settings")
 
         # check if current preset exists and set current preset name
         current_preset_name = ConfigManager.current_preset_name
@@ -219,7 +283,9 @@ class ConsoleUi:
         # write help
         if ConfigManager.show_help:
             cls._write_header("Help")
-            print('To select a preset, type the number in "()" and press Enter.\n')
+            print(
+                'To select a preset, type the number shown in the "()" and press Enter.\n'
+            )
             print('Type "n" and press Enter to create a new preset.\n')
             print(
                 'Type "g" and press Enter to open a guide on how to create presets.\n'

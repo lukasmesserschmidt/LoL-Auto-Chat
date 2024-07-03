@@ -1,0 +1,44 @@
+/all Arrr, ye got me this time, ye scallywag!
+/all Aye, ye caught me off guard!
+/all Ye got lucky, ye landlubber!
+/all Arrr, I’ll be back for revenge!
+/all Blimey, ye be a tough one!
+/all Aye, ye got me fair and square!
+/all Arrr, well played, |CN|!
+/all Ye bested me this time, matey!
+/all Aye, ye got the best of me!
+/all Arrr, I’ll get ye next time!
+/all Ye sent me to the depths, |CN|!
+/all Blimey, that was a good hit!
+/all Aye, ye be a fearsome fighter!
+/all Arrr, ye made me walk the plank!
+/all Blimey, that was a fine kill!
+/all Aye, ye got me good!
+/all Arrr, ye be a true pirate, |CN|!
+/all Ye fought like a devil!
+/all Blimey, ye made short work of me!
+/all Aye, ye sent me to the bottom of the sea!
+/all Arrr, ye got the best of me this time!
+/all Blimey, ye be a tough one, |CN|!
+/all Aye, ye bested me fair and square!
+/all Arrr, well played, ye scallywag!
+/all Ye caught me off guard, |CN|!
+/all Aye, ye got me this time!
+/all Aye, ye fought like a true pirate!
+/all Arrr, ye be a fearsome fighter, |CN|!
+/all Ye made short work of me!
+/all Blimey, that was a fine kill, |CN|!
+/all Aye, ye got the best of me this time!
+/all Arrr, ye be a true pirate, |CN|!
+/all Ye fought like a devil!
+/all Blimey, ye made short work of me!
+/all Aye, ye sent me to the bottom of the sea!
+/all Arrr, ye got the best of me this time!
+/all Blimey, ye be a tough one, |CN|!
+/all Aye, ye bested me fair and square!
+/all Arrr, well played, ye scallywag!
+/all Ye caught me off guard, |CN|!
+/all Aye, ye got me this time!
+/all Aye, ye fought like a true pirate!
+/all Arrr, ye be a fearsome fighter, |CN|!
+/all Ye made short work of me!
