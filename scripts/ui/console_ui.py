@@ -143,7 +143,7 @@ class ConsoleUi:
                 cls.current_menu = Constants.PRESET_MENU
             elif input_value == "g":
                 webbrowser.open(
-                    "https://github.com/xJolux/LoL-Auto-Chat/blob/main/CreatingPresetsGuide.md"
+                    "https://github.com/lukasmesserschmidt/LoL-Auto-Chat/blob/main/CreatingPresetsGuide.md"
                 )
             elif input_value == "p":
                 subprocess.Popen(["explorer", paths.get_presets_dir_path()])
