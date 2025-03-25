@@ -34,7 +34,6 @@ This Python console program sends chat messages in League of Legends based on in
 
 ### Default Presets
 - Default Positve
-- Default Toxic
 - Default Pirat
 - Default Poet
 
